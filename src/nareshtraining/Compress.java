@@ -8,28 +8,31 @@ public class Compress {
         int len = inputstring.length();
         String output = "";
         int j=0;
-
+        int i=0;
+        int counter=1;
         char[] charArray = new char[len];
-        for(int i=0;i<len-1;i++) {
-            charArray[i] = inputstring.charAt(i);
-            int counter=0;
-            for(j=i;j<len;++j) {
-                counter=counter+1;
-                charArray[j] = inputstring.charAt(j);
-                if (charArray[i] == charArray[j]);
+        charArray[i] = inputstring.charAt(i);
 
+        for(i=0;i<len-1;i++) {
+            charArray[i] = inputstring.charAt(i);
+               counter=1;
+            for(j=i+1;j<len;j++) {
+                charArray[j] = inputstring.charAt(j);
+                if (charArray[i] == charArray[j])
+                counter=counter+1;
                 else
                 break;
             }
-           output += charArray[i];
-            if(j==len){
-                counter=counter+1;}
+            output+=charArray[i];
+
             if(counter>1)
             output+=counter;
 
             i = j - 1;
-
             }
+
+        if (counter>=1)
+        output+=inputstring.substring(i);
         return output;
     }
 }
